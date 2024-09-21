@@ -1,0 +1,18 @@
+
+*{
+    text-align: center;
+    font-size: 36px;
+}
+
+.wrapper{
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+a{
+    /* position: absolute; */
+    margin: auto;
+}
