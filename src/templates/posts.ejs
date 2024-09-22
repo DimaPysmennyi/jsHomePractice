@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Posts</title>
+    <link rel="stylesheet" href="static/posts.css">
+</head>
+<body>
+    <h1>Пости</h1>
+    <% posts.forEach((element) => { %>
+    <div>
+        <h2><%= element.name %></h2>
+        <p><%= element.author %></p>
+    </div>
+    <% }) %>
+
+</body>
+</html>
