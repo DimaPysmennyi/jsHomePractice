@@ -18,7 +18,7 @@ const HOST = "localhost";
 const PORT = 8000;
 
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, './templates/index.html'))
+    res.sendFile(path.join(__dirname, './templates/index.html'));
 
 })
 
@@ -30,6 +30,10 @@ app.get('/posts', (req, res) => {
     ]}
 
     res.render('posts', context);
+})
+
+app.get('/user', (req, res) => {
+    res.sendFile(path.join(__dirname, './templates/user.html'));
 })
 
 app.get("/date", () => {
