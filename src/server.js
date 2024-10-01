@@ -2,6 +2,28 @@ const moment = require('moment');
 const path = require('path');
 const express = require('express')
 
+const posts =  [
+    {
+        name: 'Post 1', 
+        author: 'Author 1',
+        description: 'desc',
+        time: moment().format('dddd')
+    },
+    {
+        name: 'Post 2', 
+        author: 'Author 2',
+        description: 'desc',
+        time: moment().format('dddd')
+    },
+    {
+        name: 'Post 3', 
+        author: 'Author 3',
+        description: 'desc',
+        time: moment().format('dddd')
+    
+    }
+]
+
 function getDate(){
     let date = moment().format("YYYY/DD/MM HH:mm:ss");
     return date;
@@ -23,13 +45,26 @@ app.get('/', (req, res) => {
 })
 
 app.get('/posts', (req, res) => {
-    const context = {posts: [
-        {name: 'post 1', author: 'Author 1'},
-        {name: 'post 2', author: 'Author 2'},
-        {name: 'post 3', author: 'Author 3'}
-    ]}
+    const context = {posts: posts}
 
     res.render('posts', context);
+})
+
+app.get('/post/:id', (req, res) => {
+    const id = req.params.id
+
+    const context = {
+        post: posts[id-1]
+    }
+
+    // console.log(context.post);
+
+    if (id <= posts.length){
+        res.render('post', context);
+    } else{
+        res.send('<h1>Пост не знайдено</h1> <a href="/posts/">Всі пости</a>')
+        // res.send("not found")
+    }
 })
 
 app.get('/user', (req, res) => {
