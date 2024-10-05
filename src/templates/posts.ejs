@@ -5,15 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Posts</title>
     <link rel="stylesheet" href="static/css/posts.css">
+    <script defer src="static/js/posts.js"></script>
 </head>
 <body>
     <h1>Пости</h1>
     <% posts.forEach((element) => { %>
-    <div>
+    <div class="posts">
         <h2><%= element.name %></h2>
         <p><%= element.author %></p>
+        <p><%= element.time %></p>
     </div>
     <% }) %>
-
+    <div class="button-box">
+        <button type="button">Create Post</button>
+    </div>
+    
 </body>
 </html>

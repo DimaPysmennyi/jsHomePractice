@@ -35,6 +35,7 @@ app.set("view engine", "ejs")
 app.set("views", path.join(__dirname, "templates"))
 
 app.use('/static/', express.static(path.join(__dirname, 'static'))) 
+app.use(express.json())
 
 const HOST = "localhost";
 const PORT = 8000;
@@ -65,6 +66,10 @@ app.get('/post/:id', (req, res) => {
         res.send('<h1>Пост не знайдено</h1> <a href="/posts/">Всі пости</a>')
         // res.send("not found")
     }
+})
+
+app.post('/post/create', (req, res) => {
+    posts.push(req.body)
 })
 
 app.get('/user', (req, res) => {
