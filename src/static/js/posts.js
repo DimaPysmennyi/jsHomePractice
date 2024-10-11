@@ -2,7 +2,7 @@ button = document.querySelector("button");
 
 button.addEventListener('click', (event) => {
     const date = new Date();
-    fetch('post/create', {
+    fetch('/post/create', {
         method: 'POST',
         body: JSON.stringify({
             name: 'New Post',
