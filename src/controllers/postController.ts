@@ -27,4 +27,3 @@ export function getPostById(req: Request, res: Response): void{
 export function createPost(req: Request, res: Response): void{
     postService.createPost(req);
 }
-
