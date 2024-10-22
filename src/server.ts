@@ -1,7 +1,7 @@
 import path from 'path';
 import moment from 'moment';
 import express, { Express, Request, Response } from 'express';
-import postRouter from './routers/postRouter';
+import postRouter from './PostApp/postRouter';
 
 
 

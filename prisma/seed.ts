@@ -131,14 +131,15 @@ async function updateComment(){
 
 
 async function main(){
-    await createPost();
+    // await createPost();
     // await createManyPosts();
     // await updatePost();
     // await findPost();
-    // await getAllPosts();
+    const posts = await getAllPosts();
+    await console.log(posts.length)
     // await deletePost();
-    await createComment();
-    await findCommentAndPrint();
+    // await createComment();
+    // await findCommentAndPrint();
 }
 
 main().then(() => {
