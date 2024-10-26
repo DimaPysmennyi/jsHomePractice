@@ -2,6 +2,8 @@ import path from 'path';
 import moment from 'moment';
 import express, { Express, Request, Response } from 'express';
 import postRouter from './PostApp/postRouter';
+import userRouter from './UserApp/userRouter';
+import cookieParser from 'cookie-parser';
 
 
 
@@ -16,8 +18,13 @@ app.set("view engine", "ejs")
 app.set("views", path.join(__dirname, "templates"))
 
 app.use('/static/', express.static(path.join(__dirname, 'static'))) 
+
 app.use(express.json())
+app.use(cookieParser())
+
 app.use('/post/', postRouter)
+app.use('/user/', userRouter)
+
 
 const HOST: string = "localhost";
 const PORT: number = 8000;

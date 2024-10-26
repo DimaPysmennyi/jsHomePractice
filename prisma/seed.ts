@@ -8,7 +8,8 @@ async function createPost() {
             name: 'New Post',
             author: 'Author',
             description: 'desc',
-            time: '14:00'
+            time: '14:00',
+            userId: 1
         }
     }).then(() => {
         console.log(1231)
@@ -18,9 +19,9 @@ async function createPost() {
 async function createManyPosts() {
     await prisma.post.createMany({
         data: [
-            { name: 'New Post', author: 'Author', description: 'desc', time: '14:00'},
-            { name: 'New Post', author: 'Author', description: 'desc', time: '14:00'},
-            { name: 'New Post', author: 'Author', description: 'desc', time: '14:00'},
+            { name: 'New Post', author: 'Author', description: 'desc', time: '14:00', userId: 1},
+            { name: 'New Post', author: 'Author', description: 'desc', time: '14:00', userId: 1},
+            { name: 'New Post', author: 'Author', description: 'desc', time: '14:00', userId: 1},
         ]
     })
     
@@ -68,7 +69,8 @@ async function createComment() {
         data: {
             headline: 'headline',
             body: 'body',
-            postId: 1
+            postId: 1,
+            userId: 1
         }
     })
 }
@@ -76,9 +78,9 @@ async function createComment() {
 async function createManyComments() {
     await prisma.comment.createMany({
         data: [
-            { headline: 'headline1', body: 'body', postId: 1},
-            { headline: 'headline2', body: 'body', postId: 1},
-            { headline: 'headline3', body: 'body', postId: 1}
+            { headline: 'headline1', body: 'body', postId: 1, userId: 1},
+            { headline: 'headline2', body: 'body', postId: 1, userId: 1},
+            { headline: 'headline3', body: 'body', postId: 1, userId: 1}
         ]
 
     })
