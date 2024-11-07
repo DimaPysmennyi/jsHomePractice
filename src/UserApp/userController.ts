@@ -1,5 +1,8 @@
 import userService from './userService'
 import { Request, Response } from "express";
+import { SECRET_KEY } from '../config/token';
+import { sign } from 'jsonwebtoken';
+
 
 export function renderLogin(req: Request, res: Response){
     res.render('login')
@@ -8,13 +11,15 @@ export function renderLogin(req: Request, res: Response){
 export async function authLogin(req: Request, res: Response){
     const data = await userService.authLogin(req.body);
     // console.log(data)
-    if (data != "Not Found"){
-        res.cookie('user', JSON.stringify(data));
-        res.sendStatus(200);
-        console.log('success');
-    } else{
+    if (data == "Not Found" || data == null){
         res.sendStatus(401);
+        return;
     }
+
+    const token = sign(data, SECRET_KEY, {expiresIn: "24h"})
+    res.cookie('token', token);
+    res.sendStatus(200);
+    // console.log('success');
 }
 
 export function renderRegistration(req: Request, res: Response){
@@ -23,11 +28,15 @@ export function renderRegistration(req: Request, res: Response){
 
 export async function authRegistration(req: Request, res: Response){
     let user = await userService.authRegistration(req.body);
-    if (user != 'User Exists'){
-        res.cookie('user', JSON.stringify(user));
-        res.sendStatus(200);
-    } else{
+    
+    if (user == 'User Exists'){
         console.log('user exists');
         res.sendStatus(401);
+        return;
     }
+
+    const token = sign(user, SECRET_KEY, {expiresIn: '24h'})
+
+    res.cookie('token', token);
+    res.sendStatus(200);
 }

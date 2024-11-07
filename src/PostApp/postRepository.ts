@@ -46,11 +46,9 @@ async function getPostById(id: number){
 
 async function createPost(data: Prisma.PostCreateInput){
     try {
-        let post = await client.post.create({
+        await client.post.create({
             data: data
         })
-
-        return post;
     } catch (error){
         handleError(error);
     }
