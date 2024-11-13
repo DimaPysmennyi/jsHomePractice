@@ -11,7 +11,7 @@ export function renderLogin(req: Request, res: Response){
 export async function authLogin(req: Request, res: Response){
     const data = await userService.authLogin(req.body);
     // console.log(data)
-    if (data == "Not Found" || data == null){
+    if (!data){
         res.sendStatus(401);
         return;
     }
@@ -27,15 +27,15 @@ export function renderRegistration(req: Request, res: Response){
 }
 
 export async function authRegistration(req: Request, res: Response){
-    let user = await userService.authRegistration(req.body);
+    let result = await userService.authRegistration(req.body);
     
-    if (user == 'User Exists'){
+    if (result.status == 'error'){
         console.log('user exists');
         res.sendStatus(401);
         return;
     }
 
-    const token = sign(user, SECRET_KEY, {expiresIn: '24h'})
+    const token = sign(result.data, SECRET_KEY, {expiresIn: '24h'})
 
     res.cookie('token', token);
     res.sendStatus(200);
