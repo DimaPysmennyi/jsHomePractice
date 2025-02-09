@@ -8,10 +8,13 @@ button.addEventListener('click', (event) => {
             name: 'New Post',
             author: 'Author',
             description: 'desc',
-            time: `${date.getHours()}:${date.getMinutes()}`
+            time: `${date.getHours()}:${date.getMinutes()}`,
+            userId: 1
+
         }),
         headers: {
             'Content-Type': 'application/json'  
         }
     })
+    window.location.reload();
 })

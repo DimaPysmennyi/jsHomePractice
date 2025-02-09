@@ -1,5 +1,4 @@
-import { StringMappingType } from "typescript";
-import { findUserByEmail, createUser } from "./userRepository"
+import { userRepository } from "./userRepository"
 import { Prisma } from "@prisma/client";
 
 interface IUserError{
@@ -16,31 +15,32 @@ interface IUser{
     id: number,
     username: string,
     email: string,
-    password: string
+    password: string,
 }
 
-async function authLogin(data: any){
-    let user = await findUserByEmail(data.email);
+async function authLogin(data: any): Promise< IUserError | IUserSuccess >{
+    let user = await userRepository.findUserByEmail(data.email);
     console.log(user);
     if (!user){
-        return null;
+        return {status: "error", message: "User doesn't exist"};
     } 
+
     if (user.password == data.password){
-        return user;
-    } else {
-        return null;
-    }
+        return {status: "success", data: user};
+    } 
+    
+    return {status: "error", message: "Wrong Password"};
     // return user;
 }
 
 async function authRegistration(data: Prisma.UserCreateInput): Promise< IUserError | IUserSuccess >{
-    let user = await findUserByEmail(data.email)
+    let user = await userRepository.findUserByEmail(data.email)
     // console.log(user)
     
     if (!user){
         data["role"] = "user";
         // console.log(data)
-        user = await createUser(data);
+        user = await userRepository.createUser(data);
         return {'status': 'success', data: user}
     } 
     return {status: 'error', message: 'User Exists'};

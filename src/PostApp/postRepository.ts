@@ -1,4 +1,3 @@
-import { PrismaClientKnownRequestError } from "@prisma/client/runtime/library";
 import client from "../client/client";
 import { Prisma } from "@prisma/client";
 
@@ -46,9 +45,25 @@ async function getPostById(id: number){
 
 async function createPost(data: Prisma.PostCreateInput){
     try {
-        await client.post.create({
+        let post = await client.post.create({
             data: data
         })
+        console.log(123123123)
+        return post;
+        
+    } catch (error){
+        handleError(error);
+    }
+}
+
+async function deletePost(id: number){
+    try{
+        let post = client.post.delete({
+            where: {
+                id: id
+            }
+        })
+        return post;
     } catch (error){
         handleError(error);
     }
@@ -57,7 +72,8 @@ async function createPost(data: Prisma.PostCreateInput){
 const postRepository = {
     getAllPosts: getAllPosts,
     getPostById: getPostById,
-    createPost: createPost
+    createPost: createPost,
+    deletePost: deletePost
 }
 
 export default postRepository;

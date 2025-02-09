@@ -9,16 +9,16 @@ export function renderLogin(req: Request, res: Response){
 }
 
 export async function authLogin(req: Request, res: Response){
-    const data = await userService.authLogin(req.body);
+    const user = await userService.authLogin(req.body);
     // console.log(data)
-    if (!data){
+    if (user.status == "error"){
         res.sendStatus(401);
-        return;
+    } else{
+        const token = sign(user.data, SECRET_KEY, {expiresIn: "24h"})
+        res.cookie('token', token);
+        res.sendStatus(200);
     }
 
-    const token = sign(data, SECRET_KEY, {expiresIn: "24h"})
-    res.cookie('token', token);
-    res.sendStatus(200);
     // console.log('success');
 }
 

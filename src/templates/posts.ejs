@@ -9,12 +9,15 @@
 </head>
 <body>
     <h1>Пости</h1>
-    <% posts.forEach((element) => { %>
-    <div class="posts">
-        <h2><%= element.name %></h2>
-        <p><%= element.author %></p>
-        <p><%= element.time %></p>
-    </div>
+    <% data.forEach((element) => { %>
+    
+        <a href="/post/<%= element.id %>">
+            <div class="posts">
+                <h2><%= element.name %></h2>
+                <p><%= element.author %></p>
+                <p><%= element.time %></p>
+            </div>    
+        </a>
     <% }) %>
     <div class="button-box">
         <button type="button">Create Post</button>

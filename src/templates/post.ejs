@@ -8,10 +8,25 @@
 </head>
 <body>
     <div>
-        <h2><%= post.name %></h2>
-        <p><%= post.description %></p>
-        <p><%= post.time %></p>
-        <p><%= post.author %></p>
+        <h2><%= data.name %></h2>
+        <p><%= data.description %></p>
+        <p><%= data.time %></p>
+        <p><%= data.author %></p>
+        <button value='<%= data.id %>'>Delete</a>
+        <script>
+            const deleteLink = document.querySelector("button");
+            deleteLink.addEventListener("click", (event) => {
+                // event.preventDefault();
+
+                fetch(`/post/delete/${deleteLink.value}`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json'  
+                    }
+                })
+                window.location.replace('/post/all')
+            })
+        </script>
     </div>
 </body>
 </html>
