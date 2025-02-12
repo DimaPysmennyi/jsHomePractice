@@ -1,22 +1,8 @@
+import { IUserError, IUserSuccess } from "../types";
 import { userRepository } from "./userRepository"
 import { Prisma } from "@prisma/client";
 
-interface IUserError{
-    status: 'error',
-    message: string
-}
 
-interface IUserSuccess{
-    status: 'success',
-    data: IUser
-}
-
-interface IUser{
-    id: number,
-    username: string,
-    email: string,
-    password: string,
-}
 
 async function authLogin(data: any): Promise< IUserError | IUserSuccess >{
     let user = await userRepository.findUserByEmail(data.email);

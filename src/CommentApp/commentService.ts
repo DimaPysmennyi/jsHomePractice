@@ -1,28 +1,7 @@
+import { ICommentError, ICommentsSuccess, ICommentSuccess } from "../types";
 import { commentRepository } from "./commentRepository";
 
-interface IComment{
-    id: number,
-    headline: string,
-    body: string,
-    src: string | null, 
-    postId: number, 
-    userId: number 
-}
 
-interface ICommentSuccess{
-    status: "success",
-    data: IComment
-}
-
-interface ICommentsSuccess{
-    status: "success",
-    data: IComment[]
-}
-
-interface ICommentError{
-    status: "error",
-    message: string
-}
 
 async function createCommentToPost(postId: number): Promise< ICommentSuccess | ICommentError >{
     let comment = await commentRepository.createCommentToPost(postId);

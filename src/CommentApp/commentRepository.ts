@@ -26,7 +26,6 @@ async function createCommentToPost(postId: number){
             data: {
                 headline: 'New Comment',
                 body: "Comment text",
-                
                 postId: postId,
                 userId: 1,
             }
