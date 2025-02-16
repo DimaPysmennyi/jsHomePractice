@@ -1,10 +1,10 @@
-import { IUserError, IUserSuccess } from "../types";
+import { IError, ISuccess, User } from "../types";
 import { userRepository } from "./userRepository"
 import { Prisma } from "@prisma/client";
 
 
 
-async function authLogin(data: any): Promise< IUserError | IUserSuccess >{
+async function authLogin(data: any): Promise< IError | ISuccess<User> >{
     let user = await userRepository.findUserByEmail(data.email);
     console.log(user);
     if (!user){
@@ -19,7 +19,7 @@ async function authLogin(data: any): Promise< IUserError | IUserSuccess >{
     // return user;
 }
 
-async function authRegistration(data: Prisma.UserCreateInput): Promise< IUserError | IUserSuccess >{
+async function authRegistration(data: Prisma.UserCreateInput): Promise< IError | ISuccess<User> >{
     let user = await userRepository.findUserByEmail(data.email)
     // console.log(user)
     
@@ -30,10 +30,6 @@ async function authRegistration(data: Prisma.UserCreateInput): Promise< IUserErr
         return {'status': 'success', data: user}
     } 
     return {status: 'error', message: 'User Exists'};
-
-
-
-
 }
 
 const userService = {

@@ -1,46 +1,16 @@
 import { Prisma } from "@prisma/client"
 
-type Post = Prisma.PostGetPayload<{}>;
-type Comment = Prisma.CommentGetPayload<{}>;
-type User = Prisma.UserGetPayload<{}>;
+export type Post = Prisma.PostGetPayload<{}>;
+export type Comment = Prisma.CommentGetPayload<{}>;
+export type User = Prisma.UserGetPayload<{}>;
 
-export interface IPostSuccess{
-    status: 'success',
-    data: Post
-}
-
-export interface IPostError{
+export interface IError{
     status: 'error',
     message: string
 }
 
-export interface IPostsSuccess{
+export interface ISuccess<T>{
     status: 'success',
-    data: Post[]
-}
-
-export interface ICommentSuccess{
-    status: "success",
-    data: Comment
-}
-
-export interface ICommentsSuccess{
-    status: "success",
-    data: Comment[]
-}
-
-export interface ICommentError{
-    status: "error",
-    message: string
-}
-
-export interface IUserError{
-    status: 'error',
-    message: string
-}
-
-export interface IUserSuccess{
-    status: 'success',
-    data: User
+    data: T
 }
 

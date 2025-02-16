@@ -1,10 +1,10 @@
-import { IPostError, IPostsSuccess, IPostSuccess } from '../types';
+import { IError, ISuccess, Post } from '../types';
 import postRepository from './postRepository';
 import { Prisma } from '@prisma/client';
 
 
 
-export async function getAllPosts(): Promise< IPostsSuccess | IPostError >{
+export async function getAllPosts(): Promise< ISuccess<Post[]> | IError >{
     const context = await postRepository.getAllPosts()
 
     if (!context){
@@ -14,7 +14,7 @@ export async function getAllPosts(): Promise< IPostsSuccess | IPostError >{
     return {status: "success", data: context}
 }
 
-export async function getPostById(id: number): Promise< IPostSuccess | IPostError >{
+export async function getPostById(id: number): Promise< ISuccess<Post> | IError >{
     const context = await postRepository.getPostById(id);
     
     if (!context){
@@ -25,7 +25,7 @@ export async function getPostById(id: number): Promise< IPostSuccess | IPostErro
 };
 
 
-export async function createPost(data: Prisma.PostCreateInput): Promise< IPostSuccess | IPostError >{
+export async function createPost(data: Prisma.PostCreateInput): Promise< ISuccess<Post> | IError >{
     let post = await postRepository.createPost(data);
     if (!post){
         return {status: "error", message: 'Post Creation Error'}
@@ -33,7 +33,7 @@ export async function createPost(data: Prisma.PostCreateInput): Promise< IPostSu
     return {status: "success", data: post}
 }
 
-export async function deletePost(id: number): Promise< IPostSuccess | IPostError >{
+export async function deletePost(id: number): Promise< ISuccess<Post> | IError >{
     let post = await postRepository.deletePost(id);
     if (!post){
         return {status: "error", message: 'Post Delete Error'};
