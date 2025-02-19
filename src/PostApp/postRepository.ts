@@ -34,6 +34,9 @@ async function getPostById(id: number){
         let post = await client.post.findUnique({
             where: {
                 id: id
+            },
+            include: {
+                comment: true
             }
         })
 

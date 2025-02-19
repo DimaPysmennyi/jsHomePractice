@@ -1,4 +1,4 @@
-const postService = require('./postService')
+import { postService } from './postService';
 import { Request, Response } from 'express';
 
 export async function getAllPosts(req: Request, res: Response) {
@@ -16,16 +16,9 @@ export async function getPostById(req: Request, res: Response) {
 
     if (context.status == "error"){
         res.send("error occured")
+        // return;
     } else{
-        const posts = await postService.getAllPosts();
-        console.log(posts.data.length)
-
-        if (+id <= posts.data.length){
-            res.render('post', context);
-        } else{
-            res.send('<h1>Пост не знайдено</h1> <a href="/post/all">Всі пости</a>')
-            // res.send("not found")
-        }
+        res.render('post', context)
     }
 }
 

@@ -40,3 +40,10 @@ export async function deletePost(id: number): Promise< ISuccess<Post> | IError >
     }
     return {status: "success", data: post};
 }
+
+export const postService = {
+    getAllPosts: getAllPosts,
+    getPostById: getPostById,
+    createPost: createPost,
+    deletePost: deletePost
+}

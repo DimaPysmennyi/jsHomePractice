@@ -2,8 +2,10 @@ import path from 'path';
 import moment from 'moment';
 import express, { Express, Request, Response } from 'express';
 import postRouter from './PostApp/postRouter';
+import postRouterApi from './PostApp/postRouterApi'
 import userRouter from './UserApp/userRouter';
 import cookieParser from 'cookie-parser';
+import cors from 'cors';
 
 
 
@@ -22,9 +24,13 @@ app.use('/static/', express.static(path.join(__dirname, 'static')))
 app.use(express.json())
 app.use(cookieParser())
 
-app.use('/post/', postRouter)
-app.use('/user/', userRouter)
+app.use('/post/', postRouter);
+app.use('/user/', userRouter);
+app.use('/api/post/');
 
+app.use(cors({
+    origin: ['http://localhost:3000']
+}))
 
 const HOST: string = "localhost";
 const PORT: number = 8000;
