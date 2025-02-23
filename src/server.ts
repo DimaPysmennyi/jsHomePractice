@@ -4,6 +4,7 @@ import express, { Express, Request, Response } from 'express';
 import postRouter from './PostApp/postRouter';
 import postRouterApi from './PostApp/postRouterApi'
 import userRouter from './UserApp/userRouter';
+import tagRouterApi from './TagApp/tagRouterApi'
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
 
@@ -26,7 +27,8 @@ app.use(cookieParser())
 
 app.use('/post/', postRouter);
 app.use('/user/', userRouter);
-app.use('/api/post/');
+app.use('/api/post/', postRouterApi);
+app.use('/api/tag/', tagRouterApi);
 
 app.use(cors({
     origin: ['http://localhost:3000']

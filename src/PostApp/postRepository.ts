@@ -36,7 +36,7 @@ async function getPostById(id: number){
                 id: id
             },
             include: {
-                comment: true
+                comments: true
             }
         })
 
