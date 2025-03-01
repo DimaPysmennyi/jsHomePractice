@@ -1,6 +1,6 @@
-package-lock.json
-.env
 /node_modules
 /prisma/db
 /prisma/migrations
- 
+/src/config/token.ts
+.env
+package-lock.json

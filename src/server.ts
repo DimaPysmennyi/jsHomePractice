@@ -4,7 +4,8 @@ import express, { Express, Request, Response } from 'express';
 import postRouter from './PostApp/postRouter';
 import postRouterApi from './PostApp/postRouterApi'
 import userRouter from './UserApp/userRouter';
-import tagRouterApi from './TagApp/tagRouterApi'
+import userRouterApi from './UserApp/userRouterApi';
+import tagRouterApi from './TagApp/tagRouterApi';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
 
@@ -29,10 +30,11 @@ app.use('/post/', postRouter);
 app.use('/user/', userRouter);
 app.use('/api/post/', postRouterApi);
 app.use('/api/tag/', tagRouterApi);
+app.use('/api/user/', userRouterApi);
 
 app.use(cors({
-    origin: ['http://localhost:3000']
-}))
+    origin: ['http://localhost:3000/']
+}));
 
 const HOST: string = "localhost";
 const PORT: number = 8000;
