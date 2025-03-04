@@ -19,6 +19,12 @@ async function findUserById(id: number){
     let user = await client.user.findUnique({
         where: {
             id: id
+        },
+        select: {
+            id: true,
+            username: true,
+            email: true,
+            role: true,
         }
     })
 

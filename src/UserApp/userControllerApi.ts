@@ -30,12 +30,6 @@ export async function authLogin(req: Request, res: Response){
 }
 
 export async function getUserByToken(req: Request, res: Response){
-    const userId = res.locals.userId;
     const result = await userService.getUserByToken(+res.locals.userId);
-    if (result.status == "error"){
-        res.json(result.message);
-        return;
-    }
-
-    res.json(result.data);
+    res.json(result);
 }

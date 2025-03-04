@@ -53,8 +53,7 @@ async function getUserByToken(id: number): Promise< IError | ISuccess<object> >{
     if (!user){
         return {status: "error", message: "User Not Found"}
     }
-
-    return {status: "success", data: {id: user.id, username: user.username, email: user.email, role: user.role}}
+    return {status: "success", data: user}
 }
 
 const userService = {
