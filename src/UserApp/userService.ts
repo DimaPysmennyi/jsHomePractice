@@ -47,7 +47,7 @@ async function authRegistration(data: CreateUser): Promise< IError | ISuccess<st
     } 
     return {status: 'error', message: 'User already exists'};
 }
-
+// object?
 async function getUserByToken(id: number): Promise< IError | ISuccess<object> >{
     let user = await userRepository.findUserById(id);
     if (!user){

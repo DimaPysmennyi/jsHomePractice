@@ -1,5 +1,5 @@
 import { Prisma } from "@prisma/client"
-
+// в файлы конкретных App
 export type Post = Prisma.PostGetPayload<{}>;
 export type Comment = Prisma.CommentGetPayload<{}>;
 export type Tag = Prisma.TagGetPayload<{}>;

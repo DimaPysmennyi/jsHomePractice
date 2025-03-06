@@ -27,6 +27,7 @@ async function createCommentToPost(postId: number){
                 headline: 'New Comment',
                 body: "Comment text",
                 postId: postId,
+                // userId тоже должно передаваться, для create можно использовать middleware на авторизацию
                 userId: 1,
             }
         })

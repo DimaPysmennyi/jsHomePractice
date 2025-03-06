@@ -1,7 +1,7 @@
 import client from "../client/client";
 import { Prisma } from "@prisma/client";
 
-
+// вынеси в папку tools файл handlePrismaError и используй везде
 function handleError(error: unknown){
     if (error instanceof Prisma.PrismaClientKnownRequestError){
         switch (error.code) {

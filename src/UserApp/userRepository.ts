@@ -1,9 +1,12 @@
+// Импорт не используется, нужно убрать
 import { Prisma } from "@prisma/client";
 import client from "../client/client";
 import { CreateUser } from "./userTypes";
+// Импорт не используется, нужно убрать
 import { hash } from "bcrypt";
 
 async function findUserByEmail(emailValue: string){
+    // try catch для всех репо
     let user = await client.user.findUnique({
         where: {
             email: emailValue

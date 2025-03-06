@@ -24,7 +24,7 @@ export async function getPostById(id: number): Promise< ISuccess<Post> | IError 
     return {status: "success", data: context}
 };
 
-
+                                //в types 
 export async function createPost(data: Prisma.PostCreateInput): Promise< ISuccess<Post> | IError >{
     let post = await postRepository.createPost(data);
     if (!post){
