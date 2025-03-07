@@ -1,7 +1,6 @@
 import { IError, ISuccess } from "../types";
-import { CreateUser, User } from "./userTypes";
+import { CreateUser, User } from "./types";
 import { userRepository } from "./userRepository"
-import { Prisma } from "@prisma/client";
 import { compare, hash } from "bcrypt";
 import { sign } from "jsonwebtoken";
 import { SECRET_KEY } from "../config/token";
@@ -48,7 +47,7 @@ async function authRegistration(data: CreateUser): Promise< IError | ISuccess<st
     return {status: 'error', message: 'User already exists'};
 }
 
-async function getUserByToken(id: number): Promise< IError | ISuccess<object> >{
+async function getUserByToken(id: number): Promise< IError | ISuccess<User> >{
     let user = await userRepository.findUserById(id);
     if (!user){
         return {status: "error", message: "User Not Found"}

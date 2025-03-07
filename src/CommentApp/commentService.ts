@@ -1,10 +1,11 @@
-import { IError, ISuccess, Comment } from "../types";
+import { IError, ISuccess } from "../types";
+import { Comment, CreateComment } from "./types";
 import { commentRepository } from "./commentRepository";
 
 
 
-async function createCommentToPost(postId: number): Promise< ISuccess<Comment> | IError >{
-    let comment = await commentRepository.createCommentToPost(postId);
+async function createCommentToPost(data: CreateComment): Promise< ISuccess<Comment> | IError >{
+    let comment = await commentRepository.createCommentToPost(data);
     if (!comment){
         return {status: "error", message: "Couldn't create a comment"}
     }

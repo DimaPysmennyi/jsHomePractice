@@ -1,9 +1,5 @@
-import { Prisma } from "@prisma/client";
 import { IError, ISuccess, Tag } from "../types";
 import tagRepository from "./tagRepository";
-
-
-
 
 async function getAllTags(): Promise <IError | ISuccess<Tag[]>>{
     const context = await tagRepository.getAllTags();

@@ -6,6 +6,7 @@ import postRouterApi from './PostApp/postRouterApi'
 import userRouter from './UserApp/userRouter';
 import userRouterApi from './UserApp/userRouterApi';
 import tagRouterApi from './TagApp/tagRouterApi';
+import commentRouter from './CommentApp/commentRouter';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
 
@@ -28,6 +29,7 @@ app.use(cookieParser())
 
 app.use('/post/', postRouter);
 app.use('/user/', userRouter);
+app.use('/comment/', commentRouter);
 app.use('/api/post/', postRouterApi);
 app.use('/api/tag/', tagRouterApi);
 app.use('/api/user/', userRouterApi);

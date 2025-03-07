@@ -1,6 +1,6 @@
-import { IError, ISuccess, Post } from '../types';
+import { IError, ISuccess } from '../types';
 import postRepository from './postRepository';
-import { Prisma } from '@prisma/client';
+import { CreatePost, Post } from './types';
 
 
 
@@ -25,7 +25,7 @@ export async function getPostById(id: number): Promise< ISuccess<Post> | IError 
 };
 
 
-export async function createPost(data: Prisma.PostCreateInput): Promise< ISuccess<Post> | IError >{
+export async function createPost(data: CreatePost): Promise< ISuccess<Post> | IError >{
     let post = await postRepository.createPost(data);
     if (!post){
         return {status: "error", message: 'Post Creation Error'}

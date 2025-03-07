@@ -3,6 +3,6 @@ import { Router } from "express";
 
 const router = Router();
 
-router.get('/getAllTags', tagControllerApi.getAllPosts);
+router.get('/all', tagControllerApi.getAllTags);
 
 export default router;

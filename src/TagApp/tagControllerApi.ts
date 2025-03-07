@@ -1,7 +1,7 @@
 import tagService from "./tagService";
 import { Request, Response } from "express";
 
-async function getAllPosts(req: Request, res: Response){
+async function getAllTags(req: Request, res: Response){
     let context = await tagService.getAllTags();
     if (context.status == "error"){
         res.json(context.message)
@@ -12,7 +12,7 @@ async function getAllPosts(req: Request, res: Response){
 }
 
 const tagControllerApi = {
-    getAllPosts: getAllPosts
+    getAllTags: getAllTags
 }
 
 export default tagControllerApi;

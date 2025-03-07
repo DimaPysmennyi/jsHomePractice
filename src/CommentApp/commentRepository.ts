@@ -1,5 +1,6 @@
 import { Prisma } from "@prisma/client";
 import client from "../client/client";
+import { CreateComment } from "./types";
 
 function handleError(error: unknown){
     if (error instanceof Prisma.PrismaClientKnownRequestError){
@@ -20,15 +21,10 @@ function handleError(error: unknown){
 }
 
 
-async function createCommentToPost(postId: number){
+async function createCommentToPost(data: CreateComment){
     try{
         let comment = client.comment.create({
-            data: {
-                headline: 'New Comment',
-                body: "Comment text",
-                postId: postId,
-                userId: 1,
-            }
+            data: data
         })
         return comment
     } catch(error){
