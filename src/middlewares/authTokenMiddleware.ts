@@ -10,6 +10,7 @@ interface IToken {
 
 export function authTokenMiddleware(req: Request, res: Response, next: NextFunction){
     const authHeader = req.headers['authorization']
+    console.log(authHeader);
     if (!authHeader){
         res.json({status: "error", message: "Did not get token"})
         return;
@@ -23,7 +24,8 @@ export function authTokenMiddleware(req: Request, res: Response, next: NextFunct
 
     // const token = verify(authHeader, SECRET_KEY);
     try{
-        const newToken = verify(authHeader, SECRET_KEY) as IToken;
+        const newToken = verify(token, SECRET_KEY) as IToken;
+        console.log(newToken);
         res.locals.userId = newToken.id;
         next()
     } catch(error){

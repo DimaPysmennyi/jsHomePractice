@@ -17,7 +17,7 @@ async function authLogin(email: string, password: string): Promise< IError | ISu
     const isMatch = await compare(password, user.password);
     console.log(isMatch);
     if (isMatch){
-        const token = sign(user.id.toString(), SECRET_KEY, {expiresIn: '24h'})
+        const token = sign({id: user.id}, SECRET_KEY, {expiresIn: '24h'})
         return {status: "success", data: token};
     } 
     
@@ -34,14 +34,14 @@ async function authRegistration(data: CreateUser): Promise< IError | ISuccess<st
         const hashedPassword = await hash(data.password, 10)
         const userData = {
             ...data,
-            password: hashedPassword
+            password: hashedPassword,
         }
         const newUser = await userRepository.createUser(userData);
         if (!newUser){
             return {"status": "error", message: "User creation error"}
         }
         
-        const token = sign(newUser.id.toString(), SECRET_KEY, {expiresIn: '24h'})
+        const token = sign({id: newUser.id}, SECRET_KEY, {expiresIn: '24h'})
         return {'status': 'success', data: token}
     } 
     return {status: 'error', message: 'User already exists'};

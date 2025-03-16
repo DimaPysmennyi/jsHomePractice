@@ -25,6 +25,7 @@ app.set("views", path.join(__dirname, "templates"))
 app.use('/static/', express.static(path.join(__dirname, 'static'))) 
 
 app.use(express.json())
+app.use(cors());
 app.use(cookieParser())
 
 app.use('/post/', postRouter);
@@ -34,9 +35,6 @@ app.use('/api/post/', postRouterApi);
 app.use('/api/tag/', tagRouterApi);
 app.use('/api/user/', userRouterApi);
 
-app.use(cors({
-    origin: ['http://localhost:3000/']
-}));
 
 const HOST: string = "localhost";
 const PORT: number = 8000;
